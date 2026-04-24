@@ -1,1049 +1,1034 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8" />
+  <title>LeadLink – MS7 Report</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --bg-alt: #ffffff;
+      --primary: #1f4f7f;
+      --primary-soft: #e3edf8;
+      --accent: #2f9e6e;
+      --text: #1f2933;
+      --muted: #6b7280;
+      --border: #d1d5db;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --shadow-soft: 0 14px 30px rgba(15, 23, 42, 0.12);
+      --shadow-subtle: 0 6px 18px rgba(15, 23, 42, 0.08);
+      --max-width: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #e0ebff 0, #f5f7fb 40%, #f9fafb 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: transparent;
+      padding: 32px 20px 12px;
+    }
+
+    .hero {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.03em;
+      margin: 0 0 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 18px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(31, 79, 127, 0.12);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill strong {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .hero-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(47, 158, 110, 0.08);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .hero-highlight span {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 420px;
+    }
+
+    .metric-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      padding: 10px 12px;
+      border: 1px solid rgba(209, 213, 219, 0.7);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
+    }
+
+    .metric-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .metric-note {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .hero-panel {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 18px;
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(209, 213, 219, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .hero-panel-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .hero-panel-tag {
+      font-size: 0.72rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .hero-panel-body {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-panel-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 10px;
+      font-size: 0.8rem;
+      color: var(--text);
+    }
+
+    .hero-panel-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .hero-panel-list li::before {
+      content: "•";
+      color: var(--accent);
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .hero-panel-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      border-top: 1px dashed rgba(209, 213, 219, 0.9);
+      padding-top: 8px;
+      margin-top: 6px;
+    }
+
+    .hero-panel-footer strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    main {
+      flex: 1;
+      padding: 0 20px 40px;
+    }
+
+    .content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 22px;
+      padding: 26px 24px 30px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(209, 213, 219, 0.9);
+    }
+
+    .section {
+      margin-bottom: 26px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+    }
+
+    .section:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+      margin: 0 0 10px;
+      color: var(--primary);
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: 0.98rem;
+      margin: 16px 0 6px;
+      color: var(--text);
+    }
+
+    p {
+      margin: 6px 0;
+      font-size: 0.9rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-md);
+      padding: 12px 12px 10px;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 4px 0 6px;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      color: var(--muted);
+    }
+
+    .tag--green {
+      background: rgba(47, 158, 110, 0.08);
+      color: var(--accent);
+    }
+
+    .tag--red {
+      background: rgba(220, 38, 38, 0.06);
+      color: #b91c1c;
+    }
+
+    .tag--blue {
+      background: rgba(37, 99, 235, 0.06);
+      color: #1d4ed8;
+    }
+
+    ul {
+      padding-left: 18px;
+      margin: 6px 0;
+      font-size: 0.9rem;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    .table-wrapper {
+      margin-top: 10px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      background: #f9fafb;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 7px 8px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef2ff;
+      color: #374151;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .kpi {
+      background: #f9fafb;
+      border-radius: 10px;
+      padding: 8px 10px;
+      border: 1px dashed #d1d5db;
+      font-size: 0.8rem;
+    }
+
+    .kpi-label {
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .kpi-value {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .kpi-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .callout {
+      margin-top: 10px;
+      padding: 10px 11px;
+      border-radius: 10px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      font-size: 0.8rem;
+      color: #166534;
+    }
+
+    .callout strong {
+      color: #15803d;
+    }
+
+    .works-cited {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .works-cited p {
+      margin: 2px 0;
+    }
+
+    footer {
+      max-width: var(--max-width);
+      margin: 18px auto 26px;
+      padding: 0 20px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-panel {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 720px) {
+      header {
+        padding-top: 22px;
+      }
+      .content {
+        padding: 18px 14px 22px;
+        border-radius: 18px;
+      }
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-metrics {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-panel {
+        padding: 14px 12px;
+      }
+    }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;LeadLink – MS7 Report&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>:root {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--bg: #f5f7fb;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--bg-alt: #ffffff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--primary: #1f4f7f;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--primary-soft: #e3edf8;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--accent: #2f9e6e;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--text: #1f2933;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--muted: #6b7280;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--border: #d1d5db;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--radius-lg: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--radius-md: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--shadow-soft: 0 14px 30px rgba(15, 23, 42, 0.12);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--shadow-subtle: 0 6px 18px rgba(15, 23, 42, 0.08);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--max-width: 1080px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>* {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-sizing: border-box;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: radial-gradient(circle at top left, #e0ebff 0, #f5f7fb 40%, #f9fafb 100%);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.6;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.page {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>min-height: 100vh;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>header {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: transparent;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 32px 20px 12px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: var(--max-width);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 32px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-title {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: clamp(2.1rem, 3vw, 2.6rem);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: -0.03em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 10px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-subtitle {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.98rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: 520px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-meta {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.pill {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.78rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 6px 11px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(31, 79, 127, 0.12);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(255, 255, 255, 0.9);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: inline-flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.pill strong {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-highlight {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: inline-flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 8px 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(47, 158, 110, 0.08);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 0.08em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-highlight span {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 7px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 7px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-metrics {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(3, minmax(0, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: 420px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.metric-card {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(255, 255, 255, 0.9);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 10px 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(209, 213, 219, 0.7);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.metric-label {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.7rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 0.08em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.metric-value {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.98rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.metric-note {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.7rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 2px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-panel {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(255, 255, 255, 0.96);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 18px 18px 16px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: var(--shadow-soft);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(209, 213, 219, 0.8);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>backdrop-filter: blur(10px);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-panel-header {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-panel-title {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-panel-tag {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.72rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 4px 9px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: var(--primary-soft);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-panel-body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-panel-list {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>list-style: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-panel-list li {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: flex-start;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-panel-list li::before {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>content: "•";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 1px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-panel-footer {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-top: 1px dashed rgba(209, 213, 219, 0.9);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding-top: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.hero-panel-footer strong {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>main {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex: 1;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0 20px 40px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.content {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: var(--max-width);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 auto;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(255, 255, 255, 0.96);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 22px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 26px 24px 30px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: var(--shadow-soft);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(209, 213, 219, 0.9);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.section {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 26px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding-bottom: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: 1px solid rgba(229, 231, 235, 0.9);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.section:last-of-type {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding-bottom: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>h2 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.15rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: -0.01em;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>h3 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.98rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 16px 0 6px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>p {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 6px 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.two-col {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: var(--bg-alt);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: var(--radius-md);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 12px 12px 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(209, 213, 219, 0.9);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: var(--shadow-subtle);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card-title {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.tag-row {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 4px 0 6px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.tag {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.72rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 3px 7px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #f3f4f6;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.tag--green {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(47, 158, 110, 0.08);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--accent);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.tag--red {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(220, 38, 38, 0.06);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #b91c1c;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.tag--blue {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(37, 99, 235, 0.06);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #1d4ed8;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>ul {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding-left: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 6px 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>li {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.table-wrapper {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>overflow-x: auto;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>table {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-collapse: collapse;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.82rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #f9fafb;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>th, td {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 7px 8px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: 1px solid #e5e7eb;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-align: left;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>vertical-align: top;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>th {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #eef2ff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #374151;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>tr:last-child td {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: none;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.kpi-grid {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.kpi {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #f9fafb;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 8px 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px dashed #d1d5db;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.kpi-label {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 2px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.kpi-value {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--primary);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.kpi-note {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 2px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.callout {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 10px 11px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #f0fdf4;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid #bbf7d0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #166534;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.callout strong {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #15803d;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.works-cited {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.works-cited p {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 2px 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>footer {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: var(--max-width);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 18px auto 26px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0 20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.78rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 900px) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.hero {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>grid-template-columns: minmax(0, 1fr);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.hero-panel {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>order: -1;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 720px) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>header {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>padding-top: 22px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.content {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>padding: 18px 14px 22px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>border-radius: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.two-col {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>grid-template-columns: minmax(0, 1fr);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.hero-metrics {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>grid-template-columns: repeat(2, minmax(0, 1fr));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 480px) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.hero-metrics {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>grid-template-columns: minmax(0, 1fr);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.hero-panel {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>padding: 14px 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1">&lt;div class="page"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="hero"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hero-highlight"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;span&gt;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Lead generation modernization</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1 class="hero-title"&gt;LeadLink – Streamlining Commercial Lending Leads&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="hero-subtitle"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>A centralized, web-based pre‑CRM application for Oak Valley Community Bank that automates lead preparation,</p>
-<p class="p1"><span class="Apple-converted-space">          </span>improves data quality, and accelerates outreach.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hero-meta"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="pill"&gt;&lt;strong&gt;Client:&lt;/strong&gt; Oak Valley Community Bank&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="pill"&gt;&lt;strong&gt;Domain:&lt;/strong&gt; Commercial lending &amp;amp; CRM&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="pill"&gt;&lt;strong&gt;Scope:&lt;/strong&gt; MS7 Report – LeadLink&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hero-metrics"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="metric-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-label"&gt;Lead conversion&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-value"&gt;8% → 12%&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-note"&gt;Projected uplift with LeadLink&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="metric-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-label"&gt;Annual labor savings&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-value"&gt;$37,400&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-note"&gt;From reduced manual processing&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="metric-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-label"&gt;ROI (5 years)&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-value"&gt;440%&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="metric-note"&gt;Breakeven &amp;lt; 270 days&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;aside class="hero-panel" aria-label="LeadLink summary"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hero-panel-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="hero-panel-title"&gt;LeadLink at a glance&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="hero-panel-tag"&gt;Pre‑CRM automation&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="hero-panel-body"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>LeadLink replaces manual Excel‑based workflows with a single web app that integrates Reonomy, RelPro,</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Firebase, Quest CRM, and ChatGPT.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;ul class="hero-panel-list"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Centralized lead intake and enrichment across Reonomy and RelPro&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Internal Firebase database as a live, editable source of truth&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Quest CRM‑ready exports and automated outreach emails&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hero-panel-footer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;span&gt;Estimated implementation cost: &lt;strong&gt;$5,000&lt;/strong&gt;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;span&gt;Lead abandonment: &lt;strong&gt;30% → &amp;lt;5%&lt;/strong&gt;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/aside&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;main&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Executive Summary --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;section class="section" id="executive-summary"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;I. Executive Summary&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Oak Valley Community Bank’s (OVCB) commercial lending lead generation and CRM preparation processes are</p>
-<p class="p1"><span class="Apple-converted-space">          </span>largely manual and fragmented. The current Quest CRM implementation cannot download intent and contact data</p>
-<p class="p1"><span class="Apple-converted-space">          </span>together and only tracks lead counts. An Excel spreadsheet is used as a middle layer between Quest CRM,</p>
-<p class="p1"><span class="Apple-converted-space">          </span>RelPro, and Reonomy, introducing errors, consuming analyst time, and causing missed opportunities.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>OVCB’s lead conversion rate is estimated at approximately 8%, and each lead takes 30–35 minutes to enter and</p>
-<p class="p1"><span class="Apple-converted-space">          </span>configure properly. Analysts spend significant time manually combining data from Reonomy and RelPro, cleaning</p>
-<p class="p1"><span class="Apple-converted-space">          </span>and reformatting it for Quest CRM, and drafting outreach emails.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>LeadLink is a centralized, web‑based pre‑CRM application that eliminates the Excel middleman and integrates</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Reonomy and RelPro directly. Data is extracted into a Firebase database, transformed into Quest CRM‑compatible</p>
-<p class="p1"><span class="Apple-converted-space">          </span>formats, and enriched with custom outreach emails generated via the ChatGPT API using a predefined template.</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Key features include:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Data integration across Reonomy and RelPro&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Internal database as a secure, single source of truth&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Automation of data preparation and CRM export&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Email outreach automation per lead&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Expanded CRM summaries and metrics&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>The proposed solution is expected to significantly increase efficiency and accuracy. With an estimated</p>
-<p class="p1"><span class="Apple-converted-space">          </span>implementation cost of $5,000, LeadLink would save 8 hours per week for 2 analysts, yielding annual labor</p>
-<p class="p1"><span class="Apple-converted-space">          </span>savings of about $37,400 and an estimated $15,000 in additional revenue from improved lead conversion.</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Security is enhanced by keeping data internal, and expanded metrics provide deeper insight into lead</p>
-<p class="p1"><span class="Apple-converted-space">          </span>performance. The new system is projected to increase the lead conversion rate to around 12%.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>By overhauling OVCB’s restricted and wasteful current system, LeadLink will enhance lead generation, automate</p>
-<p class="p1"><span class="Apple-converted-space">          </span>data inputs, and generate summaries and emails for each lead—transforming OVCB’s process and substantially</p>
-<p class="p1"><span class="Apple-converted-space">          </span>improving operational efficiency.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Business Analysis --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;section class="section" id="business-analysis"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;III. Business Analysis&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="two-col"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h3&gt;Bank overview&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>Oak Valley Community Bank is a community‑focused financial institution operating 18 branches primarily in</p>
-<p class="p1"><span class="Apple-converted-space">              </span>Northern California. As of December 31, 2024, Oak Valley Bancorp reported:</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;li&gt;Total assets: $1.90 billion&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;li&gt;Gross loans: $1.11 billion&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;li&gt;Total deposits: $1.70 billion&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;li&gt;Approximately 168 employees (4% workforce growth over the past year)&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>In Q4 2024, Oak Valley Bancorp achieved net income of $6.0 million, with total net income of $24.9 million</p>
-<p class="p1"><span class="Apple-converted-space">              </span>for the year. The bank serves individuals, small to medium‑sized businesses, and the agricultural sector,</p>
-<p class="p1"><span class="Apple-converted-space">              </span>offering personal and business banking, loans, mortgages, investment services, and specialized agricultural</p>
-<p class="p1"><span class="Apple-converted-space">              </span>financing across California’s Central Valley and Sacramento Region.</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="card-title"&gt;Strategic initiatives &amp;amp; SWOT&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="tag-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="tag tag--blue"&gt;Branch expansion&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="tag tag--blue"&gt;Digital banking&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>OVCB is expanding its branch network, including a planned Lodi branch opening in mid‑2025, and is</p>
-<p class="p1"><span class="Apple-converted-space">                </span>enhancing digital banking capabilities to improve customer experience and operational efficiency.</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;strong&gt;Strengths:&lt;/strong&gt; Strong local presence, diverse product offerings, solid financial position&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;strong&gt;Weaknesses:&lt;/strong&gt; Limited geographic reach, dependence on loan income, technology gaps&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;strong&gt;Opportunities:&lt;/strong&gt; Technological advancements, expanded lending&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;li&gt;&lt;strong&gt;Threats:&lt;/strong&gt; Competition from large national and community banks, regulatory changes, economic fluctuations&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Target business area&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>LeadLink focuses on the commercial lending department, specifically the lead generation process. The</p>
-<p class="p1"><span class="Apple-converted-space">          </span>commercial lending department:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Provides loans and credit services to businesses&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Assesses creditworthiness and structures/approves loans&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Manages disbursement and repayment&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Maintains long‑term client relationships and monitors risk&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>In the current system, approximately 30% of leads are abandoned due to delays in entry. Because banks earn</p>
-<p class="p1"><span class="Apple-converted-space">          </span>most of their revenue through net interest margin (charging higher interest on loans than they pay on</p>
-<p class="p1"><span class="Apple-converted-space">          </span>deposits), commercial lending is critical to profitability. Historically, lenders relied on referrals,</p>
-<p class="p1"><span class="Apple-converted-space">          </span>walk‑ins, and advertising, but OVCB has invested in more active lead generation via software tools to maintain</p>
-<p class="p1"><span class="Apple-converted-space">          </span>a competitive advantage during a strong growth phase.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Current Business Process --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;section class="section" id="current-process"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;IV. Current Business Process Analysis&lt;/h2&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Problem–opportunity–impact summary&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="table-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;table aria-label="Current process problems and opportunities"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;th&gt;Problem&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;th&gt;Opportunity&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;th&gt;Impact&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Cannot download intent data and contact data together.&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Combine intent and contact data.&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Increases time spent on lead preparation; analysts spend ~12 hours/week manually combining data.&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Quest CRM only tracks lead counts; limited performance indicators.&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Add CRM‑compatible summaries by lead type and value.&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;No prioritization; managers cannot segment by urgency or lead quality.&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Manual input from Reonomy and RelPro into Quest CRM via a master Excel sheet.&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Automate API‑based integration and remove Excel.&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Leads are reformatted 3–4 times, wasting ~5 hours/week per analyst.&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Excel formatting is error‑prone.&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Replace Excel with an internal database and CRM export tool.&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;30% of leads delayed or lost pre‑contact due to formatting errors.&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Ad hoc email outreach.&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Auto‑generate GPT email drafts per lead.&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Outreach delays of 2–3 days; automation enables same‑day contact.&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/table&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;End‑to‑end current workflow&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Lead generation begins in two applications: Reonomy and RelPro. Both are B2B prospecting intelligence tools</p>
-<p class="p1"><span class="Apple-converted-space">          </span>with different focuses:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;&lt;strong&gt;Reonomy:&lt;/strong&gt; Real estate lead generation&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;&lt;strong&gt;RelPro:&lt;/strong&gt; Lead intent data&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Leads are generated based on OVCB’s criteria and stored in each system. An employee then transfers lead</p>
-<p class="p1"><span class="Apple-converted-space">          </span>information from both applications into a master Excel spreadsheet, combining data for the same leads and</p>
-<p class="p1"><span class="Apple-converted-space">          </span>businesses and adding notes. The Excel sheet is manually formatted to fit Quest CRM and then uploaded.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>From Quest CRM, senior staff select leads and perform additional research. Qualified leads are passed to</p>
-<p class="p1"><span class="Apple-converted-space">          </span>lenders, who contact prospects and begin the lending process. This workflow takes about 10 minutes per lead,</p>
-<p class="p1"><span class="Apple-converted-space">          </span>with the bank handling 25–30 new leads per week. Analysts spend 5–6 hours per week solely on formatting and</p>
-<p class="p1"><span class="Apple-converted-space">          </span>data handling—time that could be redirected to qualifying and prioritizing leads. On average, it takes around</p>
-<p class="p1"><span class="Apple-converted-space">          </span>two days for a lender to contact a lead.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Proposed Process --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;section class="section" id="proposed-process"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;V. Proposed Process Analysis&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>The proposed solution is a centralized, web‑based application that automates OVCB’s lead generation and CRM</p>
-<p class="p1"><span class="Apple-converted-space">          </span>preparation. The application integrates directly with Reonomy and RelPro APIs, allowing users to search,</p>
-<p class="p1"><span class="Apple-converted-space">          </span>retrieve, and manage leads in a single interface. It merges contact and intent data from RelPro with real</p>
-<p class="p1"><span class="Apple-converted-space">          </span>estate data from Reonomy and stores leads in a Firebase database as a live, editable source of truth.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Users can browse, annotate, and selectively export leads in Quest CRM’s required format. For each lead, a</p>
-<p class="p1"><span class="Apple-converted-space">          </span>custom outreach email is generated using the ChatGPT API and a predetermined template, eliminating 5–10</p>
-<p class="p1"><span class="Apple-converted-space">          </span>minutes of manual email drafting per lead. The backend handles CRM formatting, email generation, and data</p>
-<p class="p1"><span class="Apple-converted-space">          </span>transfer, while the frontend provides an intuitive interface for search, review, export, and note entry. This</p>
-<p class="p1"><span class="Apple-converted-space">          </span>structure reduces manual labor by an estimated 75–85%, minimizes human error, and ensures CRM‑readiness from</p>
-<p class="p1"><span class="Apple-converted-space">          </span>the outset.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;From manual to automated workflow&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Currently, users log into Reonomy and RelPro separately, download CSVs, merge data in Excel, manually clean</p>
-<p class="p1"><span class="Apple-converted-space">          </span>and format files for Quest CRM, and draft emails. This process consumes 12–15 analyst hours per week, with</p>
-<p class="p1"><span class="Apple-converted-space">          </span>1.5–2 minutes per lead spent on reformatting and 5 minutes per lead on email drafting. OVCB processes around</p>
-<p class="p1"><span class="Apple-converted-space">          </span>250 leads per month, resulting in roughly 21 hours per month lost to data formatting and email preparation</p>
-<p class="p1"><span class="Apple-converted-space">          </span>alone.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Delays in entry cause up to 30% of leads to go cold or be lost entirely—about 75 missed opportunities per</p>
-<p class="p1"><span class="Apple-converted-space">          </span>month. Assuming an average commercial loan size of $250,000 and a net interest margin of 3.35%, this equates</p>
-<p class="p1"><span class="Apple-converted-space">          </span>to approximately $627,000 per year in missed loan revenue.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Proposed user journey&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Access a single web app to search across both Reonomy and RelPro APIs&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Curate and review results in real time&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Automatically merge and clean data&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Add internal notes in‑app and save them to the database&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Export CRM‑ready lead packages instantly&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Download or send custom outreach emails with one click&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="kpi-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="kpi"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-label"&gt;Manual Excel merging &amp;amp; formatting&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-value"&gt;Eliminated&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-note"&gt;Replaced by automated integration and export&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="kpi"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-label"&gt;Outreach email drafting&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-value"&gt;250+ hours/year saved&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-note"&gt;Via auto‑generated GPT emails&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="kpi"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-label"&gt;Lead abandonment&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-value"&gt;30% → &amp;lt;5%&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-note"&gt;Through faster, error‑free processing&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="kpi"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-label"&gt;Additional loan revenue&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-value"&gt;$15,000/year&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-note"&gt;From improved conversion&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="kpi"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-label"&gt;Labor savings&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-value"&gt;$12,000/year&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-note"&gt;From reduced analyst time&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="kpi"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-label"&gt;ROI over 5 years&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-value"&gt;440%&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-note"&gt;Breakeven in under 270 days&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="callout"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;strong&gt;Impact:&lt;/strong&gt; The redesigned process dramatically improves data integrity, speed, and scalability in</p>
-<p class="p1"><span class="Apple-converted-space">          </span>lead management, enabling employees to focus on high‑value analysis and relationship building instead of</p>
-<p class="p1"><span class="Apple-converted-space">          </span>repetitive data handling.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Proposed physical schema&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="table-wrapper"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;table aria-label="Proposed database schema"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;th&gt;Table&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;th&gt;Field&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;th&gt;Data type&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;th&gt;Key&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Lead&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;LeadID&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;INT&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Primary key&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Lead&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;LeadName&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;VARCHAR (100)&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Lead&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;ContactData&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;VARCHAR (255)&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Lead&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;IntentLevel&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;VARCHAR (20)&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Note&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;NoteID&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;INT&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Primary key&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Note&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;LeadID&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;INT&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Foreign key → Lead&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Note&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Content&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;TEXT&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Email&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;EmailID&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;INT&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Primary key&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Email&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;LeadID&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;INT&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Foreign key → Lead&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Email&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;SentDate&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;DATETIME&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Email&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Template&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;VARCHAR (50)&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;ExportedLead&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;ExportedLeadID&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;INT&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Primary key&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;ExportedLead&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;LeadID&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;INT&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Foreign key → Lead&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;PerformanceReport&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;ReportID&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;INT&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Primary key&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;PerformanceReport&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;ExportedLeadID&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;INT&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;td&gt;Foreign key → ExportedLead&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/table&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Solution Assessment --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;section class="section" id="solution-assessment"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;VI. Solution Assessment&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>LeadLink supports OVCB primarily by reducing the time and effort required for the initial stages of lead</p>
-<p class="p1"><span class="Apple-converted-space">          </span>generation. As one stakeholder noted, “we get paid high salaries, but find ourselves spending a large chunk of</p>
-<p class="p1"><span class="Apple-converted-space">          </span>our time on lead generation which any low‑level employee could do as well.” By replacing the master Excel</p>
-<p class="p1"><span class="Apple-converted-space">          </span>sheet with an interactive dashboard, time is saved at multiple points in the process.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Automated data transfer addresses the largest pain point: manually entering data from one application to</p>
-<p class="p1"><span class="Apple-converted-space">          </span>another without meaningful modification. With an estimated implementation cost of $5,000, LeadLink is</p>
-<p class="p1"><span class="Apple-converted-space">          </span>projected to save 8 hours per week for 2 analysts, resulting in annual labor savings of $37,400 and an</p>
-<p class="p1"><span class="Apple-converted-space">          </span>additional $15,000 in revenue from increased lead conversion.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Email generation further accelerates the process once leads reach lenders. A simple, consistent starting email</p>
-<p class="p1"><span class="Apple-converted-space">          </span>shortens the time to first contact by several days, enabling high‑level employees to manage more leads. All</p>
-<p class="p1"><span class="Apple-converted-space">          </span>employees involved in lead generation benefit by spending more time validating and prioritizing leads rather</p>
-<p class="p1"><span class="Apple-converted-space">          </span>than simply moving them through the pipeline.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Critical success factors&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Reliable data integration from Reonomy and RelPro&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Automated CRM‑ready output in Quest’s required format&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Effective email automation with minimal need for manual editing&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;User‑friendly UI for fast lead search and review&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Clear time and cost savings to justify ROI&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Feasibility analysis&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="two-col"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-title"&gt;Financial &amp;amp; operational feasibility&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="tag-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="tag tag--green"&gt;ROI &amp;gt; 400%&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="tag tag--green"&gt;Breakeven &amp;lt; 270 days&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>Financially, the system is attractive, with ROI exceeding 400% over five years and breakeven in under 270</p>
-<p class="p1"><span class="Apple-converted-space">              </span>days. Operationally, LeadLink fits within existing team roles, enhances current workflows, and does not</p>
-<p class="p1"><span class="Apple-converted-space">              </span>require new hires. Adoption is expected to be straightforward, with minimal training.</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="card-title"&gt;Technical &amp;amp; schedule feasibility&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="tag-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="tag tag--blue"&gt;Stable APIs&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;span class="tag tag--blue"&gt;8‑week build&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>Technologically, LeadLink uses modern, proven tools with low risk: Reonomy and RelPro APIs, Firebase, and</p>
-<p class="p1"><span class="Apple-converted-space">              </span>ChatGPT. The main risks involve email quality control and maintaining compatibility with Quest CRM. With</p>
-<p class="p1"><span class="Apple-converted-space">              </span>tight scope and clear requirements, the system is schedule‑feasible, with only minor post‑launch</p>
-<p class="p1"><span class="Apple-converted-space">              </span>refinements anticipated.</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Stakeholders and impact&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>The primary beneficiaries are OVCB employees involved in lead generation and commercial lending. LeadLink</p>
-<p class="p1"><span class="Apple-converted-space">          </span>saves time, improves data quality, and increases conversion, thereby reducing labor costs and increasing</p>
-<p class="p1"><span class="Apple-converted-space">          </span>revenue. No job losses are anticipated; the system is positioned as an enhancement tool rather than a</p>
-<p class="p1"><span class="Apple-converted-space">          </span>replacement for human roles. The only significant downside is the upfront implementation cost.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Implementation plan&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>OVCB should engage an entry‑level software developer with a strong backend focus. Because the application is</p>
-<p class="p1"><span class="Apple-converted-space">          </span>internal, frontend UI requirements are modest, while backend robustness is critical. With a clear product</p>
-<p class="p1"><span class="Apple-converted-space">          </span>requirements document (PRD), the system can be implemented in approximately 8 weeks, assuming:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Tight scope and avoidance of scope creep&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Use of stable, well‑documented APIs (Reonomy, RelPro)&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;Fast, clear communication and feedback from OVCB during planning and testing&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Indicative 8‑week timeline&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;&lt;strong&gt;Week 1:&lt;/strong&gt; Finalize requirements and design system architecture&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;&lt;strong&gt;Weeks 2–3:&lt;/strong&gt; Backend development, API integration, and Firebase setup&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;&lt;strong&gt;Weeks 4–5:&lt;/strong&gt; Frontend UI for search, review, and notes&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;&lt;strong&gt;Week 6:&lt;/strong&gt; ChatGPT email prompting and integration, CRM formatting logic&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;&lt;strong&gt;Week 7:&lt;/strong&gt; Full system testing and feedback iteration&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;li&gt;&lt;strong&gt;Week 8:&lt;/strong&gt; Deployment, employee training, and short‑term refinements&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Training requirements are modest, potentially consisting of short videos explaining the interface and features</p>
-<p class="p1"><span class="Apple-converted-space">          </span>for current staff and future new hires. As a smaller organization, OVCB can maintain close collaboration with</p>
-<p class="p1"><span class="Apple-converted-space">          </span>the developer throughout the project.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Conclusion --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;section class="section" id="conclusion"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;VII. Conclusion&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>The LeadLink system offers a highly feasible and impactful solution for OVCB’s commercial lending operations.</p>
-<p class="p1"><span class="Apple-converted-space">          </span>By replacing a manual, Excel‑based lead generation workflow with a centralized, web‑based platform, the bank</p>
-<p class="p1"><span class="Apple-converted-space">          </span>can realize substantial gains in efficiency, accuracy, and lead conversion.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Financially, LeadLink is compelling: a $5,000 implementation cost, annual labor savings of $37,400, and</p>
-<p class="p1"><span class="Apple-converted-space">          </span>increased loan revenue of $15,000 support an ROI of over 400% within five years and breakeven in under 270</p>
-<p class="p1"><span class="Apple-converted-space">          </span>days. Technologically, the system leverages stable, well‑documented APIs (Reonomy, RelPro, ChatGPT, Firebase)</p>
-<p class="p1"><span class="Apple-converted-space">          </span>and is designed for scalability and long‑term reliability.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Operationally, LeadLink enhances existing workflows without disrupting roles or requiring new hires. It</p>
-<p class="p1"><span class="Apple-converted-space">          </span>empowers analysts, managers, and lenders by automating low‑value tasks and freeing time for strategic</p>
-<p class="p1"><span class="Apple-converted-space">          </span>decision‑making. From a scheduling perspective, an 8‑week implementation timeline is realistic with clear</p>
-<p class="p1"><span class="Apple-converted-space">          </span>scope and responsive collaboration.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Ultimately, LeadLink addresses core pain points in OVCB’s lead management process by reducing lead</p>
-<p class="p1"><span class="Apple-converted-space">          </span>abandonment, cutting manual work by up to 85%, and enabling faster, more effective client outreach. It is a</p>
-<p class="p1"><span class="Apple-converted-space">          </span>high‑impact investment aligned with OVCB’s strategic goals of growth, digital modernization, and increased</p>
-<p class="p1"><span class="Apple-converted-space">          </span>profitability.</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;!-- Works Cited --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;section class="section" id="works-cited"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Works Cited&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="works-cited"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;“Automate CRM Data Entry: 10 Best Practices.” &lt;em&gt;Hatrio&lt;/em&gt;, 17 May 2024, sales.hatrio.com/blog/automate-crm-data-entry-10-best-practices.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;Parmar, Parina. “How RPA Can Be Used To Automate Customer Relationship Management.” &lt;em&gt;GoRoboted&lt;/em&gt;, 2 Oct. 2023, goroboted.com/how-rpa-can-be-used-to-automate-customer-relationship-management.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;Wilson, Terry. “How CRM Integration Boosts Lead Conversion.” &lt;em&gt;ChatMetrics&lt;/em&gt;, www.chatmetrics.com/blog/how-crm-integration-boosts-lead-conversion.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;Scheiner, Michael. “45 CRM Statistics You Need to Know in 2025.” Edited by Sejla Hajric, 4 Mar. 2025, crm.org/crmland/crm-statistics.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;Nichols, Chris. “How to Manage Your Efficiency Ratio with Loan Size.” &lt;em&gt;SouthState Correspondent&lt;/em&gt;, 18 Sept. 2023, southstatecorrespondent.com/banker-to-banker/commercial/efficiency_ratio.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;Gruenberg, Martin J. “Quarterly Banking Profile – Third Quarter 2024.” &lt;em&gt;FDIC&lt;/em&gt;, 12 Dec. 2024, www.fdic.gov/news/speeches/2024/quarterly-banking-profile-third-quarter-2024.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/main&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;span&gt;MS7 Report – LeadLink&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;span&gt;Designed as a responsive single‑page summary for Oak Valley Community Bank&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<div class="page">
+  <header>
+    <div class="hero">
+      <div>
+        <div class="hero-highlight">
+          <span></span>
+          Lead generation modernization
+        </div>
+        <h1 class="hero-title">LeadLink – Streamlining Commercial Lending Leads</h1>
+        <p class="hero-subtitle">
+          A centralized, web-based pre‑CRM application for Oak Valley Community Bank that automates lead preparation,
+          improves data quality, and accelerates outreach.
+        </p>
+        <div class="hero-meta">
+          <div class="pill"><strong>Client:</strong> Oak Valley Community Bank</div>
+          <div class="pill"><strong>Domain:</strong> Commercial lending &amp; CRM</div>
+          <div class="pill"><strong>Scope:</strong> MS7 Report – LeadLink</div>
+        </div>
+        <div class="hero-metrics">
+          <div class="metric-card">
+            <div class="metric-label">Lead conversion</div>
+            <div class="metric-value">8% → 12%</div>
+            <div class="metric-note">Projected uplift with LeadLink</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Annual labor savings</div>
+            <div class="metric-value">$37,400</div>
+            <div class="metric-note">From reduced manual processing</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">ROI (5 years)</div>
+            <div class="metric-value">440%</div>
+            <div class="metric-note">Breakeven &lt; 270 days</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="LeadLink summary">
+        <div class="hero-panel-header">
+          <div class="hero-panel-title">LeadLink at a glance</div>
+          <div class="hero-panel-tag">Pre‑CRM automation</div>
+        </div>
+        <p class="hero-panel-body">
+          LeadLink replaces manual Excel‑based workflows with a single web app that integrates Reonomy, RelPro,
+          Firebase, Quest CRM, and ChatGPT.
+        </p>
+        <ul class="hero-panel-list">
+          <li>Centralized lead intake and enrichment across Reonomy and RelPro</li>
+          <li>Internal Firebase database as a live, editable source of truth</li>
+          <li>Quest CRM‑ready exports and automated outreach emails</li>
+        </ul>
+        <div class="hero-panel-footer">
+          <span>Estimated implementation cost: <strong>$5,000</strong></span>
+          <span>Lead abandonment: <strong>30% → &lt;5%</strong></span>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <div class="content">
+      <!-- Executive Summary -->
+      <section class="section" id="executive-summary">
+        <h2>I. Executive Summary</h2>
+        <p>
+          Oak Valley Community Bank’s (OVCB) commercial lending lead generation and CRM preparation processes are
+          largely manual and fragmented. The current Quest CRM implementation cannot download intent and contact data
+          together and only tracks lead counts. An Excel spreadsheet is used as a middle layer between Quest CRM,
+          RelPro, and Reonomy, introducing errors, consuming analyst time, and causing missed opportunities.
+        </p>
+        <p>
+          OVCB’s lead conversion rate is estimated at approximately 8%, and each lead takes 30–35 minutes to enter and
+          configure properly. Analysts spend significant time manually combining data from Reonomy and RelPro, cleaning
+          and reformatting it for Quest CRM, and drafting outreach emails.
+        </p>
+        <p>
+          LeadLink is a centralized, web‑based pre‑CRM application that eliminates the Excel middleman and integrates
+          Reonomy and RelPro directly. Data is extracted into a Firebase database, transformed into Quest CRM‑compatible
+          formats, and enriched with custom outreach emails generated via the ChatGPT API using a predefined template.
+          Key features include:
+        </p>
+        <ul>
+          <li>Data integration across Reonomy and RelPro</li>
+          <li>Internal database as a secure, single source of truth</li>
+          <li>Automation of data preparation and CRM export</li>
+          <li>Email outreach automation per lead</li>
+          <li>Expanded CRM summaries and metrics</li>
+        </ul>
+        <p>
+          The proposed solution is expected to significantly increase efficiency and accuracy. With an estimated
+          implementation cost of $5,000, LeadLink would save 8 hours per week for 2 analysts, yielding annual labor
+          savings of about $37,400 and an estimated $15,000 in additional revenue from improved lead conversion.
+          Security is enhanced by keeping data internal, and expanded metrics provide deeper insight into lead
+          performance. The new system is projected to increase the lead conversion rate to around 12%.
+        </p>
+        <p>
+          By overhauling OVCB’s restricted and wasteful current system, LeadLink will enhance lead generation, automate
+          data inputs, and generate summaries and emails for each lead—transforming OVCB’s process and substantially
+          improving operational efficiency.
+        </p>
+      </section>
+
+      <!-- Business Analysis -->
+      <section class="section" id="business-analysis">
+        <h2>III. Business Analysis</h2>
+        <div class="two-col">
+          <div>
+            <h3>Bank overview</h3>
+            <p>
+              Oak Valley Community Bank is a community‑focused financial institution operating 18 branches primarily in
+              Northern California. As of December 31, 2024, Oak Valley Bancorp reported:
+            </p>
+            <ul>
+              <li>Total assets: $1.90 billion</li>
+              <li>Gross loans: $1.11 billion</li>
+              <li>Total deposits: $1.70 billion</li>
+              <li>Approximately 168 employees (4% workforce growth over the past year)</li>
+            </ul>
+            <p>
+              In Q4 2024, Oak Valley Bancorp achieved net income of $6.0 million, with total net income of $24.9 million
+              for the year. The bank serves individuals, small to medium‑sized businesses, and the agricultural sector,
+              offering personal and business banking, loans, mortgages, investment services, and specialized agricultural
+              financing across California’s Central Valley and Sacramento Region.
+            </p>
+          </div>
+          <div>
+            <div class="card">
+              <div class="card-title">Strategic initiatives &amp; SWOT</div>
+              <div class="tag-row">
+                <span class="tag tag--blue">Branch expansion</span>
+                <span class="tag tag--blue">Digital banking</span>
+              </div>
+              <p>
+                OVCB is expanding its branch network, including a planned Lodi branch opening in mid‑2025, and is
+                enhancing digital banking capabilities to improve customer experience and operational efficiency.
+              </p>
+              <ul>
+                <li><strong>Strengths:</strong> Strong local presence, diverse product offerings, solid financial position</li>
+                <li><strong>Weaknesses:</strong> Limited geographic reach, dependence on loan income, technology gaps</li>
+                <li><strong>Opportunities:</strong> Technological advancements, expanded lending</li>
+                <li><strong>Threats:</strong> Competition from large national and community banks, regulatory changes, economic fluctuations</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h3>Target business area</h3>
+        <p>
+          LeadLink focuses on the commercial lending department, specifically the lead generation process. The
+          commercial lending department:
+        </p>
+        <ul>
+          <li>Provides loans and credit services to businesses</li>
+          <li>Assesses creditworthiness and structures/approves loans</li>
+          <li>Manages disbursement and repayment</li>
+          <li>Maintains long‑term client relationships and monitors risk</li>
+        </ul>
+        <p>
+          In the current system, approximately 30% of leads are abandoned due to delays in entry. Because banks earn
+          most of their revenue through net interest margin (charging higher interest on loans than they pay on
+          deposits), commercial lending is critical to profitability. Historically, lenders relied on referrals,
+          walk‑ins, and advertising, but OVCB has invested in more active lead generation via software tools to maintain
+          a competitive advantage during a strong growth phase.
+        </p>
+      </section>
+
+      <!-- Current Business Process -->
+      <section class="section" id="current-process">
+        <h2>IV. Current Business Process Analysis</h2>
+
+        <h3>Problem–opportunity–impact summary</h3>
+        <div class="table-wrapper">
+          <table aria-label="Current process problems and opportunities">
+            <thead>
+            <tr>
+              <th>Problem</th>
+              <th>Opportunity</th>
+              <th>Impact</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>Cannot download intent data and contact data together.</td>
+              <td>Combine intent and contact data.</td>
+              <td>Increases time spent on lead preparation; analysts spend ~12 hours/week manually combining data.</td>
+            </tr>
+            <tr>
+              <td>Quest CRM only tracks lead counts; limited performance indicators.</td>
+              <td>Add CRM‑compatible summaries by lead type and value.</td>
+              <td>No prioritization; managers cannot segment by urgency or lead quality.</td>
+            </tr>
+            <tr>
+              <td>Manual input from Reonomy and RelPro into Quest CRM via a master Excel sheet.</td>
+              <td>Automate API‑based integration and remove Excel.</td>
+              <td>Leads are reformatted 3–4 times, wasting ~5 hours/week per analyst.</td>
+            </tr>
+            <tr>
+              <td>Excel formatting is error‑prone.</td>
+              <td>Replace Excel with an internal database and CRM export tool.</td>
+              <td>30% of leads delayed or lost pre‑contact due to formatting errors.</td>
+            </tr>
+            <tr>
+              <td>Ad hoc email outreach.</td>
+              <td>Auto‑generate GPT email drafts per lead.</td>
+              <td>Outreach delays of 2–3 days; automation enables same‑day contact.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>End‑to‑end current workflow</h3>
+        <p>
+          Lead generation begins in two applications: Reonomy and RelPro. Both are B2B prospecting intelligence tools
+          with different focuses:
+        </p>
+        <ul>
+          <li><strong>Reonomy:</strong> Real estate lead generation</li>
+          <li><strong>RelPro:</strong> Lead intent data</li>
+        </ul>
+        <p>
+          Leads are generated based on OVCB’s criteria and stored in each system. An employee then transfers lead
+          information from both applications into a master Excel spreadsheet, combining data for the same leads and
+          businesses and adding notes. The Excel sheet is manually formatted to fit Quest CRM and then uploaded.
+        </p>
+        <p>
+          From Quest CRM, senior staff select leads and perform additional research. Qualified leads are passed to
+          lenders, who contact prospects and begin the lending process. This workflow takes about 10 minutes per lead,
+          with the bank handling 25–30 new leads per week. Analysts spend 5–6 hours per week solely on formatting and
+          data handling—time that could be redirected to qualifying and prioritizing leads. On average, it takes around
+          two days for a lender to contact a lead.
+        </p>
+      </section>
+
+      <!-- Proposed Process -->
+      <section class="section" id="proposed-process">
+        <h2>V. Proposed Process Analysis</h2>
+        <p>
+          The proposed solution is a centralized, web‑based application that automates OVCB’s lead generation and CRM
+          preparation. The application integrates directly with Reonomy and RelPro APIs, allowing users to search,
+          retrieve, and manage leads in a single interface. It merges contact and intent data from RelPro with real
+          estate data from Reonomy and stores leads in a Firebase database as a live, editable source of truth.
+        </p>
+        <p>
+          Users can browse, annotate, and selectively export leads in Quest CRM’s required format. For each lead, a
+          custom outreach email is generated using the ChatGPT API and a predetermined template, eliminating 5–10
+          minutes of manual email drafting per lead. The backend handles CRM formatting, email generation, and data
+          transfer, while the frontend provides an intuitive interface for search, review, export, and note entry. This
+          structure reduces manual labor by an estimated 75–85%, minimizes human error, and ensures CRM‑readiness from
+          the outset.
+        </p>
+
+        <h3>From manual to automated workflow</h3>
+        <p>
+          Currently, users log into Reonomy and RelPro separately, download CSVs, merge data in Excel, manually clean
+          and format files for Quest CRM, and draft emails. This process consumes 12–15 analyst hours per week, with
+          1.5–2 minutes per lead spent on reformatting and 5 minutes per lead on email drafting. OVCB processes around
+          250 leads per month, resulting in roughly 21 hours per month lost to data formatting and email preparation
+          alone.
+        </p>
+        <p>
+          Delays in entry cause up to 30% of leads to go cold or be lost entirely—about 75 missed opportunities per
+          month. Assuming an average commercial loan size of $250,000 and a net interest margin of 3.35%, this equates
+          to approximately $627,000 per year in missed loan revenue.
+        </p>
+
+        <h3>Proposed user journey</h3>
+        <ul>
+          <li>Access a single web app to search across both Reonomy and RelPro APIs</li>
+          <li>Curate and review results in real time</li>
+          <li>Automatically merge and clean data</li>
+          <li>Add internal notes in‑app and save them to the database</li>
+          <li>Export CRM‑ready lead packages instantly</li>
+          <li>Download or send custom outreach emails with one click</li>
+        </ul>
+
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-label">Manual Excel merging &amp; formatting</div>
+            <div class="kpi-value">Eliminated</div>
+            <div class="kpi-note">Replaced by automated integration and export</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Outreach email drafting</div>
+            <div class="kpi-value">250+ hours/year saved</div>
+            <div class="kpi-note">Via auto‑generated GPT emails</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Lead abandonment</div>
+            <div class="kpi-value">30% → &lt;5%</div>
+            <div class="kpi-note">Through faster, error‑free processing</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Additional loan revenue</div>
+            <div class="kpi-value">$15,000/year</div>
+            <div class="kpi-note">From improved conversion</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Labor savings</div>
+            <div class="kpi-value">$12,000/year</div>
+            <div class="kpi-note">From reduced analyst time</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">ROI over 5 years</div>
+            <div class="kpi-value">440%</div>
+            <div class="kpi-note">Breakeven in under 270 days</div>
+          </div>
+        </div>
+
+        <div class="callout">
+          <strong>Impact:</strong> The redesigned process dramatically improves data integrity, speed, and scalability in
+          lead management, enabling employees to focus on high‑value analysis and relationship building instead of
+          repetitive data handling.
+        </div>
+
+        <h3>Proposed physical schema</h3>
+        <div class="table-wrapper">
+          <table aria-label="Proposed database schema">
+            <thead>
+            <tr>
+              <th>Table</th>
+              <th>Field</th>
+              <th>Data type</th>
+              <th>Key</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>Lead</td>
+              <td>LeadID</td>
+              <td>INT</td>
+              <td>Primary key</td>
+            </tr>
+            <tr>
+              <td>Lead</td>
+              <td>LeadName</td>
+              <td>VARCHAR (100)</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Lead</td>
+              <td>ContactData</td>
+              <td>VARCHAR (255)</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Lead</td>
+              <td>IntentLevel</td>
+              <td>VARCHAR (20)</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Note</td>
+              <td>NoteID</td>
+              <td>INT</td>
+              <td>Primary key</td>
+            </tr>
+            <tr>
+              <td>Note</td>
+              <td>LeadID</td>
+              <td>INT</td>
+              <td>Foreign key → Lead</td>
+            </tr>
+            <tr>
+              <td>Note</td>
+              <td>Content</td>
+              <td>TEXT</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>EmailID</td>
+              <td>INT</td>
+              <td>Primary key</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>LeadID</td>
+              <td>INT</td>
+              <td>Foreign key → Lead</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>SentDate</td>
+              <td>DATETIME</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>Template</td>
+              <td>VARCHAR (50)</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>ExportedLead</td>
+              <td>ExportedLeadID</td>
+              <td>INT</td>
+              <td>Primary key</td>
+            </tr>
+            <tr>
+              <td>ExportedLead</td>
+              <td>LeadID</td>
+              <td>INT</td>
+              <td>Foreign key → Lead</td>
+            </tr>
+            <tr>
+              <td>PerformanceReport</td>
+              <td>ReportID</td>
+              <td>INT</td>
+              <td>Primary key</td>
+            </tr>
+            <tr>
+              <td>PerformanceReport</td>
+              <td>ExportedLeadID</td>
+              <td>INT</td>
+              <td>Foreign key → ExportedLead</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Solution Assessment -->
+      <section class="section" id="solution-assessment">
+        <h2>VI. Solution Assessment</h2>
+        <p>
+          LeadLink supports OVCB primarily by reducing the time and effort required for the initial stages of lead
+          generation. As one stakeholder noted, “we get paid high salaries, but find ourselves spending a large chunk of
+          our time on lead generation which any low‑level employee could do as well.” By replacing the master Excel
+          sheet with an interactive dashboard, time is saved at multiple points in the process.
+        </p>
+        <p>
+          Automated data transfer addresses the largest pain point: manually entering data from one application to
+          another without meaningful modification. With an estimated implementation cost of $5,000, LeadLink is
+          projected to save 8 hours per week for 2 analysts, resulting in annual labor savings of $37,400 and an
+          additional $15,000 in revenue from increased lead conversion.
+        </p>
+        <p>
+          Email generation further accelerates the process once leads reach lenders. A simple, consistent starting email
+          shortens the time to first contact by several days, enabling high‑level employees to manage more leads. All
+          employees involved in lead generation benefit by spending more time validating and prioritizing leads rather
+          than simply moving them through the pipeline.
+        </p>
+
+        <h3>Critical success factors</h3>
+        <ul>
+          <li>Reliable data integration from Reonomy and RelPro</li>
+          <li>Automated CRM‑ready output in Quest’s required format</li>
+          <li>Effective email automation with minimal need for manual editing</li>
+          <li>User‑friendly UI for fast lead search and review</li>
+          <li>Clear time and cost savings to justify ROI</li>
+        </ul>
+
+        <h3>Feasibility analysis</h3>
+        <div class="two-col">
+          <div class="card">
+            <div class="card-title">Financial &amp; operational feasibility</div>
+            <div class="tag-row">
+              <span class="tag tag--green">ROI &gt; 400%</span>
+              <span class="tag tag--green">Breakeven &lt; 270 days</span>
+            </div>
+            <p>
+              Financially, the system is attractive, with ROI exceeding 400% over five years and breakeven in under 270
+              days. Operationally, LeadLink fits within existing team roles, enhances current workflows, and does not
+              require new hires. Adoption is expected to be straightforward, with minimal training.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-title">Technical &amp; schedule feasibility</div>
+            <div class="tag-row">
+              <span class="tag tag--blue">Stable APIs</span>
+              <span class="tag tag--blue">8‑week build</span>
+            </div>
+            <p>
+              Technologically, LeadLink uses modern, proven tools with low risk: Reonomy and RelPro APIs, Firebase, and
+              ChatGPT. The main risks involve email quality control and maintaining compatibility with Quest CRM. With
+              tight scope and clear requirements, the system is schedule‑feasible, with only minor post‑launch
+              refinements anticipated.
+            </p>
+          </div>
+        </div>
+
+        <h3>Stakeholders and impact</h3>
+        <p>
+          The primary beneficiaries are OVCB employees involved in lead generation and commercial lending. LeadLink
+          saves time, improves data quality, and increases conversion, thereby reducing labor costs and increasing
+          revenue. No job losses are anticipated; the system is positioned as an enhancement tool rather than a
+          replacement for human roles. The only significant downside is the upfront implementation cost.
+        </p>
+
+        <h3>Implementation plan</h3>
+        <p>
+          OVCB should engage an entry‑level software developer with a strong backend focus. Because the application is
+          internal, frontend UI requirements are modest, while backend robustness is critical. With a clear product
+          requirements document (PRD), the system can be implemented in approximately 8 weeks, assuming:
+        </p>
+        <ul>
+          <li>Tight scope and avoidance of scope creep</li>
+          <li>Use of stable, well‑documented APIs (Reonomy, RelPro)</li>
+          <li>Fast, clear communication and feedback from OVCB during planning and testing</li>
+        </ul>
+
+        <h3>Indicative 8‑week timeline</h3>
+        <ul>
+          <li><strong>Week 1:</strong> Finalize requirements and design system architecture</li>
+          <li><strong>Weeks 2–3:</strong> Backend development, API integration, and Firebase setup</li>
+          <li><strong>Weeks 4–5:</strong> Frontend UI for search, review, and notes</li>
+          <li><strong>Week 6:</strong> ChatGPT email prompting and integration, CRM formatting logic</li>
+          <li><strong>Week 7:</strong> Full system testing and feedback iteration</li>
+          <li><strong>Week 8:</strong> Deployment, employee training, and short‑term refinements</li>
+        </ul>
+        <p>
+          Training requirements are modest, potentially consisting of short videos explaining the interface and features
+          for current staff and future new hires. As a smaller organization, OVCB can maintain close collaboration with
+          the developer throughout the project.
+        </p>
+      </section>
+
+      <!-- Conclusion -->
+      <section class="section" id="conclusion">
+        <h2>VII. Conclusion</h2>
+        <p>
+          The LeadLink system offers a highly feasible and impactful solution for OVCB’s commercial lending operations.
+          By replacing a manual, Excel‑based lead generation workflow with a centralized, web‑based platform, the bank
+          can realize substantial gains in efficiency, accuracy, and lead conversion.
+        </p>
+        <p>
+          Financially, LeadLink is compelling: a $5,000 implementation cost, annual labor savings of $37,400, and
+          increased loan revenue of $15,000 support an ROI of over 400% within five years and breakeven in under 270
+          days. Technologically, the system leverages stable, well‑documented APIs (Reonomy, RelPro, ChatGPT, Firebase)
+          and is designed for scalability and long‑term reliability.
+        </p>
+        <p>
+          Operationally, LeadLink enhances existing workflows without disrupting roles or requiring new hires. It
+          empowers analysts, managers, and lenders by automating low‑value tasks and freeing time for strategic
+          decision‑making. From a scheduling perspective, an 8‑week implementation timeline is realistic with clear
+          scope and responsive collaboration.
+        </p>
+        <p>
+          Ultimately, LeadLink addresses core pain points in OVCB’s lead management process by reducing lead
+          abandonment, cutting manual work by up to 85%, and enabling faster, more effective client outreach. It is a
+          high‑impact investment aligned with OVCB’s strategic goals of growth, digital modernization, and increased
+          profitability.
+        </p>
+      </section>
+
+      <!-- Works Cited -->
+      <section class="section" id="works-cited">
+        <h2>Works Cited</h2>
+        <div class="works-cited">
+          <p>“Automate CRM Data Entry: 10 Best Practices.” <em>Hatrio</em>, 17 May 2024, sales.hatrio.com/blog/automate-crm-data-entry-10-best-practices.</p>
+          <p>Parmar, Parina. “How RPA Can Be Used To Automate Customer Relationship Management.” <em>GoRoboted</em>, 2 Oct. 2023, goroboted.com/how-rpa-can-be-used-to-automate-customer-relationship-management.</p>
+          <p>Wilson, Terry. “How CRM Integration Boosts Lead Conversion.” <em>ChatMetrics</em>, www.chatmetrics.com/blog/how-crm-integration-boosts-lead-conversion.</p>
+          <p>Scheiner, Michael. “45 CRM Statistics You Need to Know in 2025.” Edited by Sejla Hajric, 4 Mar. 2025, crm.org/crmland/crm-statistics.</p>
+          <p>Nichols, Chris. “How to Manage Your Efficiency Ratio with Loan Size.” <em>SouthState Correspondent</em>, 18 Sept. 2023, southstatecorrespondent.com/banker-to-banker/commercial/efficiency_ratio.</p>
+          <p>Gruenberg, Martin J. “Quarterly Banking Profile – Third Quarter 2024.” <em>FDIC</em>, 12 Dec. 2024, www.fdic.gov/news/speeches/2024/quarterly-banking-profile-third-quarter-2024.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <span>MS7 Report – LeadLink</span>
+    <span>Designed as a responsive single‑page summary for Oak Valley Community Bank</span>
+  </footer>
+</div>
 </body>
 </html>
+
